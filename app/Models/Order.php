@@ -15,7 +15,7 @@ class Order extends Model
 
     /**
      * Hidden fields
-     * @var arrays
+     * @var array
      */
 
     /**
