@@ -13,7 +13,27 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', 'DashboardController@index');
+    Route::get('orders', 'DashboardController@showAllOrders')->name('orders');
+    Route::post('accept/{id}', 'DashboardController@acceptOrder')->name('accept');
+    Route::post('reject/{id}', 'DashboardController@rejectOrder')->name('accept');
+
+
+    Route::get('categories', 'DashboardController@categories')->name('categories');
+    Route::get('add_category', 'DashboardController@add_category')->name('add_category');
+    Route::post('add_category', 'DashboardController@add_category')->name('add_category');
+    Route::get('edit_category', 'DashboardController@edit_category')->name('edit_category');
+    Route::get('delete_category', 'DashboardController@delete_category')->name('delete_category');
+
+
+    Route::get('add_product', 'DashboardController@add_product')->name('add_product');
+    Route::get('products', 'DashboardController@showAllProducts')->name('products');
+
+});
+
+//Route::get('/dashboard', 'DashboardController@index');
+//Route::get('orders', 'DashboardController@orders')->name('orders');
 
 $this->get('admin', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('admin', 'Auth\LoginController@login');

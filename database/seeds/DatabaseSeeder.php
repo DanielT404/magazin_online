@@ -15,28 +15,38 @@ class DatabaseSeeder extends Seeder
         $lengths = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'Custom'];
         $currencies = ['lei', '€', '$'];
         $options = ['Yes', 'No'];
-        $featuredOrApproved = [true, false];
+        $bool = [true, false];
 
         DB::table('users')->insert([
             'email' => str_random(10).'@gmail.com',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('categories')->insert([
-            'name' => str_random(5)
+            'name' => str_random(5),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('subcategories')->insert([
             'name' => str_random(6),
-            'category_id' => rand(1, 5)
+            'category_id' => rand(1, 5),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('colors')->insert([
-            'color' => array_random($colors)
+            'color' => array_random($colors),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('lengths')->insert([
-            'length' => array_random($lengths)
+            'length' => array_random($lengths),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('clients')->insert([
@@ -46,7 +56,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('secret'),
             'home_address' => str_random(20),
             'delivery_address' => str_random(10),
-            'telephone_number' => '0736628004'
+            'telephone_number' => '0736628004',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('products')->insert([
@@ -57,9 +69,11 @@ class DatabaseSeeder extends Seeder
             'price' => rand(1, 5000),
             'color_option' => array_random($options),
             'length_option' => array_random($options),
-            'featured' => array_random($featuredOrApproved),
+            'featured' => array_random($bool),
             'color_id' => rand(1, 5),
-            'length_id' => rand(1, 5)
+            'length_id' => rand(1, 5),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('orders')->insert([
@@ -67,7 +81,18 @@ class DatabaseSeeder extends Seeder
             'product_id' => rand(1, 10),
             'quantity' => rand(1, 5),
             'total_price' => rand(1, 6000),
-            'approved' => array_random($featuredOrApproved)
+            'approved' => array_random($bool),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
+
+        ]);
+
+        DB::table('promotions')->insert([
+            'product_id' => rand(1, 20),
+            'percentage' => rand(20.00, 50.00),
+            'active' => array_random($bool),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
     }
 }

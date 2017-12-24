@@ -23,7 +23,7 @@ class CreatePromotionsTable extends Migration
                 ->onDelete('cascade');
 
             /** Table fields */
-            $table->decimal('percentage', 2);
+            $table->decimal('percentage', 4, 2);
             $table->boolean('active')->default(false);
             $table->timestamps();
         });

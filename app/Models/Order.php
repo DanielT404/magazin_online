@@ -24,7 +24,7 @@ class Order extends Model
      */
     public function getClient()
     {
-        return $this->belongsTo('\App\Models\Client');
+        return $this->belongsTo('\App\Models\Client', 'client_id');
     }
 
     /**
@@ -33,6 +33,6 @@ class Order extends Model
      */
     public function getProduct()
     {
-        return $this->belongsTo('\App\Models\Product');
+        return $this->belongsTo('\App\Models\Product', 'product_id');
     }
 }
