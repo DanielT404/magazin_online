@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subcategory extends Model
+class Promotion extends Model
 {
 
     /**
      *  The attributes that are mass assignable.
      *  @var array
      */
-    protected $fillable = ['name', 'category_id'];
+    protected $fillable = ['product_id', 'percentage', 'active'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -19,13 +19,11 @@ class Subcategory extends Model
      */
 
     /**
-     *
-     * Get the category that belongs to the subcategory
-     *
+     * Retrieve the product's having promotion.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category()
+    public function getProduct()
     {
-        return $this->belongsTo('\App\Models\Category');
+        $this->belongsTo('\App\Models\Product');
     }
 }

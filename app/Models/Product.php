@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     /**
-     * The attributes that aren't mass assignable.
+     *  The attributes that are mass assignable.
      *  @var array
      */
     protected $fillable = ['name', 'description', 'image', 'currency', 'price', 'color_option', 'length_option', 'featured'];
 
     /**
-     * Hidden fields
+     * The attributes that should be hidden for arrays.
      * @var array
      */
 
@@ -33,5 +33,14 @@ class Product extends Model
     public function getLength()
     {
         return $this->belongsTo('\App\Models\Length', 'length_id');
+    }
+
+    /**
+     * Retrieve the product's promotion.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getPromotion()
+    {
+        return $this->hasMany('\App\Models\Promotion');
     }
 }

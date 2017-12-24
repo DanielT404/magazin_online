@@ -8,13 +8,13 @@ class Length extends Model
 {
 
     /**
-     * The attributes that aren't mass assignable.
+     *  The attributes that are mass assignable.
      *  @var array
      */
     protected $fillable = ['length'];
 
     /**
-     * Hidden fields
+     * The attributes that should be hidden for arrays.
      * @var array
      */
 

@@ -9,14 +9,14 @@ class Client extends Model
 
 
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      *  @var array
      */
     protected $fillable = ['first_name', 'last_name', 'email', 'password', 'home_address', 'delivery_address', 'telephone_number'];
 
 
     /**
-     * Hidden fields
+     * The attributes that should be hidden for arrays.
      * @var array
      */
     protected $hidden = ['password'];
