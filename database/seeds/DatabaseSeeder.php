@@ -94,5 +94,11 @@ class DatabaseSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
+
+        DB::table('admins')->insert([
+            'name' => 'dunno',
+            'email' => str_random(5).'@gmail.com',
+            'password' => bcrypt('secret')
+        ]);
     }
 }

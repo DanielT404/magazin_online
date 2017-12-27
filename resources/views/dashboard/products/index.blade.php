@@ -28,6 +28,9 @@
                 <th>
                     Creat la data de
                 </th>
+                <th>
+                    Actiuni
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -41,6 +44,10 @@
                     <td>{{ $product->length_option == 'Yes' ? 'Da': 'Nu' }}</td>
                     <td>{{ $product->featured ? 'Da' : 'Nu' }}</td>
                     <td>{{ $product->created_at }}</td>
+                    <td>
+                        <a class="btn btn-info" href="#">Editeaza</a>
+                        <a class="btn btn-danger" href="#">Sterge</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
