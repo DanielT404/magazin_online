@@ -15,7 +15,7 @@ class CreateLengthsTable extends Migration
     {
         Schema::create('lengths', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('length', ['S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'Custom']);
+            $table->string('length', 25);
             $table->timestamps();
         });
     }

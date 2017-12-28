@@ -18,22 +18,27 @@ class CreateProductsTable extends Migration
             /* Foreign keys to color and length table */
             $table->integer('color_id')->unsigned();
             $table->integer('length_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->foreign('color_id')
                 ->references('id')->on('colors')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
             $table->foreign('length_id')
                 ->references('id')->on('lengths')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
+            $table->foreign('category_id')
+                ->references('id')->on('categories')
+                ->onDelete('restrict');
 
 
             /* Fields of the Product table */
             $table->string('name', 255);
             $table->string('description', 255);
             $table->string('image', 255);
-            $table->unsignedInteger('price');
+            $table->string('price');
             $table->enum('currency', ['lei', '€', '$']);
             $table->enum('color_option', ['Yes', 'No']);
             $table->enum('length_option', ['Yes', 'No']);
+            $table->integer('stock');
             $table->boolean('featured');
 
             /* Timestamps */

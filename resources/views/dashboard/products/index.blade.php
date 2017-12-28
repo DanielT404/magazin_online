@@ -11,6 +11,9 @@
                     Descriere
                 </th>
                 <th>
+                    Categorie
+                </th>
+                <th>
                     Moneda
                 </th>
                 <th>
@@ -38,6 +41,7 @@
                 <tr>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
+                    <td>{{ $product->getCategory->name }}</td>
                     <td>{{ $product->currency }}</td>
                     <td>{{ $product->price }} {{$product->currency}}</td>
                     <td>{{ $product->color_option == 'Yes' ? 'Da': 'Nu' }}</td>
@@ -45,7 +49,7 @@
                     <td>{{ $product->featured ? 'Da' : 'Nu' }}</td>
                     <td>{{ $product->created_at }}</td>
                     <td>
-                        <a class="btn btn-info" href="#">Editeaza</a>
+                        <a class="btn btn-info" href="{{route('product.edit.show', ['id' => $product->id])}}">Editeaza</a>
                         <a class="btn btn-danger" href="#">Sterge</a>
                     </td>
                 </tr>

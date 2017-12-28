@@ -1,0 +1,169 @@
+.navbar  {
+    border: none;
+    margin-bottom: 0;
+}
+
+.second-navbar-home
+{
+    background-color: #2b4141;
+}
+
+.left-nav-item a
+{
+    height: 64px;
+    line-height: 32px !important;
+}
+
+.slider-wrapper{
+    margin: 50px 5px 25px 0;
+}
+
+.right-slider-item {
+    margin-bottom: 20px;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+    height: 470px !important;
+}
+
+
+.title {
+    position: relative;
+    color: #bea05d;
+}
+
+.title:after {
+    content: "";
+    border-bottom: 1px solid #bea05d;
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-top: -27px;
+    width: calc(48% - 140px);
+    z-index: 0;
+}
+
+.title:before {
+    content: "";
+    border-bottom: 1px solid #bea05d;
+    display: block;
+    position: absolute;
+    left: 0;
+    margin-top: 15px;
+    width: calc(48% - 140px);
+    z-index: 0;
+}
+
+.title-custom {
+    position: relative;
+}
+
+.title-bar {
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    color: #cccc;
+}
+
+.title-custom a, .title-custom a:link, .title-custom a:hover {
+    color: #bea05d;
+    text-decoration: none;
+}
+
+.title-custom a.active-choose
+{
+    color: black;
+}
+
+.title-custom:after {
+    content: "";
+    border-bottom: 1px solid #bea05d;
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-top: -27px;
+    width: calc(50% - 310px);
+    z-index: 0;
+}
+
+.title-custom:before {
+    content: "";
+    border-bottom: 1px solid #bea05d;
+    display: block;
+    position: absolute;
+    left: 0;
+    margin-top: 15px;
+    width: calc(50% - 310px);
+    z-index: 0;
+}
+
+.section-body-img img {
+    width: 100%;
+}
+
+.section-body
+{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.product-details
+{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.product-price, .product-title {
+    margin: 0;
+    padding: 0;
+}
+
+#categories .row, #latest-bestsellers .row {
+    margin-bottom: 25px;
+}
+
+.brand-img
+{
+    border: 1px solid #cccccc;
+}
+
+footer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+footer ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style-type: none;
+}
+
+footer .social-icons ul li
+{
+    display: inline-block;
+}
+
+.social-icons-item
+{
+    font-size: 20px !important;
+}
+
+footer .box-wrapper {
+    border: 1px solid #cccccc;
+}
+
+footer .box-wrapper hr {
+    margin: 0 !important;
+    border-top: 1px solid #c9a05d;
+}
+
+footer .contact {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+section.main-footer {
+    background-color: #000;
+    padding: 15px;
+    color: #fff;
+}

@@ -10,7 +10,7 @@ class Product extends Model
      *  The attributes that are mass assignable.
      *  @var array
      */
-    protected $fillable = ['name', 'description', 'image', 'currency', 'price', 'color_option', 'length_option', 'featured'];
+    protected $fillable = ['name', 'color_id', 'length_id', 'category_id', 'description', 'image', 'currency', 'price', 'color_option', 'length_option', 'stock', 'featured'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -42,5 +42,14 @@ class Product extends Model
     public function getPromotion()
     {
         return $this->hasMany('\App\Models\Promotion');
+    }
+
+    /**
+     * Retrieve the product's category
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function getCategory()
+    {
+        return $this->belongsTo('\App\Models\Category', 'category_id');
     }
 }

@@ -12,8 +12,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('stylesheets')
 </head>
-<body>
+<body style="background-color: #eeee;">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -42,12 +44,18 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @endguest
+                        @if(Auth::guard('admin')->check())
+                            <li><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
+                        @endif
+                        @if(Auth::guard('client')->check())
+                            <li><a href="#0">Profil</a></li>
+                        @endif
+                        @if(!Auth::guard('client')->check() && !Auth::guard('admin')->check())
+                            <li><a href="{{route('login')}}">Autentificare</a></li>
+                            <li><a href="{{route('register')}}">Inregistrare</a></li>
+                        @endif
                         @auth('admin')
-                            <li><a href="{{route('orders')}}">Comenzi inregistrate in sistem</a></li>
+                            <li><a href="{{route('orders')}}">Comenzi</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     Categorii <span class="caret"></span>
@@ -80,6 +88,17 @@
                                     <li>
                                         <a href="{{route('products') }}">
                                             Lista produse
+                                        </a>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <a href="{{route('colors')}}">
+                                            Culori
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('lengths')}}">
+                                            Marimi
                                         </a>
                                     </li>
                                 </ul>
@@ -135,5 +154,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('javascripts')
 </body>
 </html>

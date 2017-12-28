@@ -32,9 +32,11 @@
                         <td>{{$category->id}}</td>
                         <td>{{$category->name}}</td>
                         @if(count($category->subcategories) > 0)
-                            @foreach($category->subcategories as $subcategory)
-                                <td>{{$subcategory->name}}</td>
+                            <td>
+                            @foreach($category->subcategories as $i => $subcategory)
+                                @if($i == count($category->subcategories) - 1) {{$subcategory->name}} @else {{$subcategory->name}}, @endif
                             @endforeach
+                            </td>
                         @else
                             <td>Nu</td>
                         @endif
