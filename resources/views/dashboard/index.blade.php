@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
     <div class="container">
         <p>Salut. Bine ai venit pe dashboard.</p>

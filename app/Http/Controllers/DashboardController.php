@@ -135,7 +135,7 @@ class DashboardController extends Controller
             }
             if($request->has('submitted')) {
                 if($request->hasFile('image') && $request->file('image')->isValid()) {
-                    Category::create(['name' => $request->input('name'), 'image_path' => $request->file('image')->store('categories', 'public')]);
+                    Category::create(['name' => $request->input('name'), 'slug' => str_slug($request->input('name'), '-'), 'image_path' => $request->file('image')->store('categories', 'public')]);
                     return view('dashboard.categories.add_category', ['success' => true]);
                 }
             }
@@ -158,7 +158,7 @@ class DashboardController extends Controller
             if($request->hasFile('image') && $request->file('image')->isValid())
             {
                 Category::where('id', $category->id)
-                    ->update(['name' => $request->input('name'), 'image_path' => $request->file('image')->store('categories', 'public')]);
+                    ->update(['name' => $request->input('name'), 'slug' => str_slug($request->input('name'), '-'), 'image_path' => $request->file('image')->store('categories', 'public')]);
             } else {
                 Category::where('id', $category->id)
                     ->update(['name' => $request->input('name')]);
@@ -234,6 +234,7 @@ class DashboardController extends Controller
             if(Product::create(
                 [
                 'name' => $request->input('name'),
+                    'slug' => str_slug($request->input('name'), '-'),
                 'description' => $request->input('description'),
                 'category_id' => $request->input('category_id'),
                 'color_id' => $request->input('colorOptionradio') == 'No' ? null : $request->input('color_id'),
@@ -283,6 +284,7 @@ class DashboardController extends Controller
                 Product::where('id', $id)
                     ->update([
                         'name' => $request->input('name'),
+                        'slug' => str_slug($request->input('name'), '-'),
                         'description' => $request->input('description'),
                         'image' => $request->file('image')->store('products', 'public'),
                         'currency' => $request->input('currencyradio'),

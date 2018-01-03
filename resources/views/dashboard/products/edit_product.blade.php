@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
     <div class="container">
         @if (isset($success) and $success)
@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label for="description">Categorie</label>
                     <select class="form-control" id="category" name="category_id">
-                        @if(isset($product) && count($product) > 0)
+                        @if(isset($product) && !blank($product))
                             @foreach($categories as $category)
                                 @if($product->getCategory->name == $category->name)
                                   <option value="{{$product->getCategory->id}}" selected="selected">{{$product->getCategory->name}}</option>

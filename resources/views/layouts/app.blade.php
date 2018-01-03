@@ -148,12 +148,80 @@
                 </div>
             </div>
         </nav>
+        <nav class="navbar navbar-default second-navbar-home">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li class="left-nav-item"><a href="{{route('home')}}">Acasa</a></li>
+                    <li class="left-nav-item"><a href="#0">Despre noi</a></li>
+                    <li class="left-nav-item"><a href="#">Shop</a></li>
+                    <li class="left-nav-item"><a href="#">Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#0"><input type="text" class="form-control" placeholder="Cauta in magazin..."></a></li>
+                </ul>
+            </div>
+        </nav>
 
         @yield('content')
+
+        <footer>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <h4>Relatii cu clientii</h4>
+                            <ul>
+                                <li><a href="#0">Politica de returnare a unui produs</a></li>
+                                <li><a href="#0">Livrarea unei comenzi si metode de plata disponibile</a></li>
+                                <li><a href="#0">Contactati-ne</a></li>
+                            </ul>
+
+                            <div class="social-icons">
+                                <ul>
+                                    <li><a href="#0"><i class="fa fa-facebook-official social-icons-item" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li><a href="#0"><i class="fa fa-twitter-square social-icons-item" aria-hidden="true"></i></a></li>
+                                    <li><a href="#0"><i class="fa fa-instagram social-icons-item" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <h4>Informatii generale</h4>
+                            <ul>
+                                <li><a href="#0">Despre noi</a></li>
+                                <li><a href="#0">Cele mai vandute produse</a></li>
+                                <li><a href="#0">Parteneriate</a></li>
+                                <li><a href="#0">Politica de confidentialitate</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="box-wrapper text-center">
+                                <h4>Micul Magazin</h4>
+                                <hr>
+                                <div class="contact">
+                                    <ul>
+                                        <li><span class="glyphicon glyphicon-map-marker"></span> Adresa</li>
+                                        <li><span class="glyphicon glyphicon-earphone"></span> 0736628004</li>
+                                        <li><span class="glyphicon glyphicon-envelope"></span> danieltuna97@gmail.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <section class="main-footer">
+            <div class="container">
+                <h5 class="text-center">&copy; @php echo date("Y");@endphp Micul Magazin. Toate drepturile rezervate.</h5>
+            </div>
+        </section>
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.ez-plus.js') }}"></script>
     @yield('javascripts')
 </body>
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
     <h2 class="text-center">Culori adaugate in baza de date</h2>
     <div class="container">

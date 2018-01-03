@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
     <div class="container">
         <h2 class="text-center">Adauga culoare</h2>
@@ -25,8 +25,9 @@
             <div class="form-group">
                 <label for="name" class="col-md-4 control-label">Culoare</label>
                 <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="color" placeholder="Introdu numele culorii..." autofocus>
+                    <input type="text" id="color" name="color" value="#123456" />
                 </div>
+                <div id="colorpicker"></div>
             </div>
             <button class="btn btn-success" type="submit" name="submitted" style="display: block; margin: 0 auto;">Trimite</button>
 
@@ -34,3 +35,4 @@
         @endif
     </div>
 @endsection
+

@@ -32,6 +32,7 @@ class CreateProductsTable extends Migration
 
             /* Fields of the Product table */
             $table->string('name', 255);
+            $table->string('slug', 255);
             $table->string('description', 255);
             $table->string('image', 255);
             $table->string('price');
