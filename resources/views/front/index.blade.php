@@ -1,16 +1,11 @@
 @extends('layouts.app')
-@section('stylesheets')
-    <link href="{{asset('css/home.css')}}" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-@endsection
 @section('content')
     <section id="slider">
         <div class="container">
             <div class="row">
                 <div class="slider-wrapper">
                     <div class="col-md-8">
+						
                             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                 <!-- Wrapper for slides -->
                                 @if(count($sliderImages) > 0)
@@ -18,11 +13,11 @@
                                     @foreach($sliderImages as $i => $sliderImg)
                                         @if($i == 0)
                                         <div class="item active">
-                                            <img src="/storage/{{$sliderImg->image_path}}" alt="imagine" width="100%">
+                                            <img src="storage/{{$sliderImg->image_path}}" alt="imagine" width="100%">
                                         </div>
                                         @else
                                             <div class="item">
-                                                <img src="/storage/{{$sliderImg->image_path}}" width="100%">
+                                                <img src="storage/{{$sliderImg->image_path}}" width="100%">
                                             </div>
                                         @endif
                                     @endforeach
@@ -45,8 +40,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="right-slider-item">
-                                    <img src="/storage/{{$sideImg->path_image}}" alt="" width="100%">
-                                    <div id="right-slider-item-anim"></div>
+                                    <a href="#0">
+                                        <img src="storage/{{$sideImg->path_image}}" alt="" width="100%">
+                                      <!--  <div id="right-slider-item-anim"></div>-->
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -60,27 +57,33 @@
     <section id="featured-products">
         <div class="container">
             <div class="title">
-                <h2 class="text-center">Produse recomandate</h2>
+                <h2 class="text-center"><span>Cele mai populare</span></h2>
             </div>
             <div class="section-body">
                 @if(count($products) > 0)
                     @foreach($products as $featured)
                         <div class="col-md-3">
                             <div class="section-body-img">
-                                <a href="/produse/{{$featured->slug}}">
-                                    <img src="/storage/{{$featured->image}}" width="100%"/>
+                                <a href="produse/{{$featured->slug}}">
+                                    <img src="storage/{{$featured->image}}" width="100%"/>
                                 </a>
+                                <div class="section-body-img-anim"></div>
+                                <div class="section-body-img-anim-body">
+
+                                    <button class="btn-product">Vezi produsul</button>
+                                    <a class="btn-product" href="produse/{{$featured->slug}}" style="margin-right: 1px;">Optiuni</a>
+                                </div>
+                            </div>
+                            <div class="product-details">
                                 <div class="product-details">
-                                    <div class="product-details">
-                                        <p class="product-title">{{$featured->name}}</p>
-                                        <h4 class="product-price">{{$featured->price}} {{$featured->currency}}</h4>
-                                    </div>
+                                    <p class="product-title">{{$featured->name}}</p>
+                                    <h4 class="product-price">{{$featured->price}} {{$featured->currency}}</h4>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                     @else
-                        <h2 class="text-center">Oops! Momentan nu sunt disponibile produse recomandate. Revino mai tarziu!</h2>
+                        <h2 class="text-center"><span>Oops! Momentan nu sunt disponibile produse recomandate. Revino mai tarziu!</span></h2>
                 @endif
                 </div>
             </div>
@@ -89,25 +92,26 @@
     <section id="categories">
         <div class="container">
             <div class="title">
-                <h2 class="text-center">Ale noastre categorii...</h2>
+                <h2 class="text-center"><span>Colectia noastra</span></h2>
             </div>
             <div class="section-body">
-                <div class="row">
+                <div class="eq-middle">
                     @if(count($categories) > 0)
                         @foreach($categories as $category)
-                    <div class="col-md-2">
-                        <div class="section-body-img">
-                            <img src="/storage/{{$category->image_path}}" width="100%"/>
+                    <div class="">
+                        <div class="section-body-img category-body-img">
+                            <img src="storage/{{$category->image_path}}" width="100%" height="240px"/>
+                            <div class="category-body-img-anim"></div>
+                        </div>
+                        <div class="product-details">
                             <div class="product-details">
-                                <div class="product-details">
-                                    <p class="product-title">{{$category->name}}</p>
-                                </div>
+                                <p class="product-title">{{$category->name}}</p>
                             </div>
                         </div>
                     </div>
                         @endforeach
                         @else
-                        <h2 class="text-center">Oops! Momentan nu sunt adaugate categoriile. Revino mai tarziu!</h2>
+                        <h2 class="text-center"><span>Oops! Momentan nu sunt adaugate categoriile. Revino mai tarziu!</span></h2>
                     @endif
                 </div>
             </div>
@@ -115,22 +119,27 @@
     </section>
     <section id="latest-bestsellers">
         <div class="container">
-            <div class="title-custom">
-                <h2 class="text-center"><a href="#0" class="active-choose">Adaugate recent</a> <span class="title-bar"></span> <a href="#0">Cele mai vandute produse</a></h2>
+            <div class="title">
+                <h2 class="text-center choose"><span><a href="#0" class="active-choose">Recente</a> <span class="title-bar"></span> <a href="#0">Best sellers</a></span></h2>
             </div>
             <div class="section-body">
                     @if(count($recentProducts) > 0)
                         @foreach($recentProducts as $product)
                     <div class="col-md-3">
                         <div class="section-body-img">
-                            <a href="/produse/{{$product->slug}}">
-                                <img src="/storage/{{$product->image}}"/>
+                            <a href="produse/{{$product->slug}}">
+                                <img src="storage/{{$product->image}}" width="100%"/>
                             </a>
+                            <div class="section-body-img-anim"></div>
+                            <div class="section-body-img-anim-body">
+                                <a class="btn-product" style="margin-right: 1px;" href="produse/{{$product->slug}}">Vezi produsul</a>
+                                <button class="btn-product">Optiuni</button>
+                            </div>
+                        </div>
+                        <div class="product-details">
                             <div class="product-details">
-                                <div class="product-details">
-                                    <p class="product-title">{{$product->name}}</p>
-                                    <h4 class="product-price">{{$product->price}} {{$product->currency}}</h4>
-                                </div>
+                                <p class="product-title">{{$product->name}}</p>
+                                <h4 class="product-price">{{$product->price}} {{$product->currency}}</h4>
                             </div>
                         </div>
                     </div>
@@ -138,134 +147,28 @@
                         @else
                         <h2 class="text-center">Momentan nu este adaugat nici un produs. Te rugam sa revii mai tarziu!</h2>
                     @endif
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="section-body-img">--}}
-                            {{--<img src="https://placehold.it/400x500"/>--}}
-                            {{--<div class="product-details">--}}
-                                {{--<div class="product-details">--}}
-                                    {{--<p class="product-title">Lorem ipsum</p>--}}
-                                    {{--<h4 class="product-price">300 lei</h4>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="section-body-img">--}}
-                            {{--<img src="https://placehold.it/400x500"/>--}}
-                            {{--<div class="product-details">--}}
-                                {{--<p class="product-title">Lorem ipsum</p>--}}
-                                {{--<h4 class="product-price">300 lei</h4>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="section-body-img">--}}
-                            {{--<img src="https://placehold.it/400x500"/>--}}
-                            {{--<div class="product-details">--}}
-                                {{--<div class="product-details">--}}
-                                    {{--<p class="product-title">Lorem ipsum</p>--}}
-                                    {{--<h4 class="product-price">300 lei</h4>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--<div class="row">--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="section-body-img">--}}
-                            {{--<img src="https://placehold.it/400x500"/>--}}
-                            {{--<div class="product-details">--}}
-                                {{--<div class="product-details">--}}
-                                    {{--<p class="product-title">Lorem ipsum</p>--}}
-                                    {{--<h4 class="product-price">300 lei</h4>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="section-body-img">--}}
-                            {{--<img src="https://placehold.it/400x500"/>--}}
-                            {{--<div class="product-details">--}}
-                                {{--<div class="product-details">--}}
-                                    {{--<p class="product-title">Lorem ipsum</p>--}}
-                                    {{--<h4 class="product-price">300 lei</h4>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="section-body-img">--}}
-                            {{--<img src="https://placehold.it/400x500"/>--}}
-                            {{--<div class="product-details">--}}
-                                {{--<p class="product-title">Lorem ipsum</p>--}}
-                                {{--<h4 class="product-price">300 lei</h4>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="col-md-3">--}}
-                        {{--<div class="section-body-img">--}}
-                            {{--<img src="https://placehold.it/400x500"/>--}}
-                            {{--<div class="product-details">--}}
-                                {{--<div class="product-details">--}}
-                                    {{--<p class="product-title">Lorem ipsum</p>--}}
-                                    {{--<h4 class="product-price">300 lei</h4>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
                 </div>
             </div>
 
-            <div class="container text-center">
-                <a class="btn btn-info">Vezi catalogul nostru de produse</a>
+            <div class="container text-center see-all-products">
+                <a href="produse" class="btn btn-info"><span>Vezi toate produsele <i class="fa fa-long-arrow-right"></i></span></a>
             </div>
         </div>
     </section>
+    <div class="block-bht">
+        <div class="paralax-bg"></div>
+    </div>
     <section id="brands">
         <div class="container">
             <div class="title">
-                <h2 class="text-center">Brand-uri prezente</h2>
+                <h2 class="text-center"><span>Brand-uri</span></h2>
             </div>
             <div class="section-body">
-                <div class="row">
+                    @foreach($brandImages as $img)
                     <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
+                        <img src="storage/{{$img->image_path}}" width="100%" alt="">
                     </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                    <div class="col-md-2 brand-img">
-                        <img src="https://placehold.it/150x100" width="100%" alt="">
-                    </div>
-                </div>
+                    @endforeach
             </div>
         </div>
     </section>

@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('despre-noi', 'HomeController@aboutUs')->name('aboutUs');
+Route::get('contact', 'HomeController@contact')->name('contact');
 
 
 Route::get('produse', 'ProductController@index')->name('product.show.all');
@@ -86,6 +88,15 @@ Route::prefix('dashboard')->group(function () {
     Route::get('slider/lateral/modifica/{id}/{status}', 'DashboardController@edit_side_slider_image')->name('side_slider_image.edit.show');
     Route::post('slider/lateral/modifica/{id}/{status}', 'DashboardController@edit_side_slider_image')->name('side_slider_image.edit.submit');
 
+    /** Brand images */
+    Route::get('brand/imagini', 'DashboardController@showAllBrandImages')->name('brand_images');
+
+    Route::get('brand/adauga', 'DashboardController@add_brand_image')->name('brand_image.add.show');
+    Route::post('brand/adauga', 'DashboardController@add_brand_image')->name('brand_image.add.submit');
+
+    Route::get('brand/modifica/{id}/{status}', 'DashboardController@edit_brand_image')->name('brand_image.edit.show');
+    Route::post('brand/modifica/{id}/{status}', 'DashboardController@edit_brand_image')->name('brand_image.edit.submit');
+
 
 
 });
@@ -102,6 +113,11 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+/** facebook login */
+Route::get('facebook/login', 'FacebookAuthController@redirectToProvider')->name('facebook.login');
+Route::get('facebook/callback', 'FacebookAuthController@handleProviderCallback')->name('facebook.callback');
 
 
 

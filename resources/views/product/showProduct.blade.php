@@ -8,45 +8,48 @@
 @endsection
 @section('content')
     <div class="container">
-    @foreach($product as $prod)
-        <ul class="breadcrumb">
-            <li><a href="#">Acasa</a></li>
-            <li><a href="#">{{$prod->getCategory->name}}</a></li>
-            <li class="active">{{$prod->name}}</li>
-        </ul>
+    @foreach($product as $i => $prod)
+		@if($i == 0)
+			<ul class="breadcrumb">
+				<li><a href="#">Acasa</a></li>
+				<li><a href="#">{{$prod->getCategory->name}}</a></li>
+				<li class="active">{{$prod->name}}</li>
+			</ul>
+		@endif
     @endforeach
     </div>
 
     <div class="container" style="margin-top: 65px; margin-bottom: 65px;">
         <div class="main-area">
-            @foreach($product as $prod)
+            @foreach($product as $i => $prod)
+                @if($i == 0)
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <img id="prod-img" src="/storage/{{$prod->image}}" width="100%"/>
                     </div>
-                    <div class="col-md-6">
-                        <h2 class="product-title">{{$prod->name}}</h2>
+                    <div class="col-md-5">
+                        <h1 class="product-title">{{$prod->name}}</h1>
 
-                        <div class="col-md-6" style="margin: 0 !important; padding: 0 !important;">
+                        <div class="col-md-6">
                                 <ul style="margin-top: 25px; padding: 0 !important;">
                                     <li>
                                         <div class="row" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-                                            <div class="col-md-6">
+                                            <div class="">
                                                 Cantitate
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="">
                                                 <div class="input-group" style="width: 200px;">
-                                        <span class="input-group-btn">
-                                            <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
-                                              <span class="glyphicon glyphicon-minus"></span>
-                                            </button>
-                                        </span>
+													<div class="input-group-btn">
+														<button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="quantity">
+														  <span class="glyphicon glyphicon-minus"></span>
+														</button>
+													</div>
                                                     <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-                                                    <span class="input-group-btn">
-                                            <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
-                                                <span class="glyphicon glyphicon-plus"></span>
-                                            </button>
-                                        </span>
+                                                    <div class="input-group-btn">
+														<button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="quantity">
+															<span class="glyphicon glyphicon-plus"></span>
+														</button>
+													</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,6 +162,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
         </div>
     </div>
